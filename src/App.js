@@ -1,13 +1,10 @@
 import './App.css';
-import Coin from './components/Coin';
-import ToDo from './components/ToDo';
+import Movie from './components/Movie';
 
 function App() {
   return (
     <div>
-      <ToDo />
-      <hr />
-      <Coin />
+      <Movie />
     </div>
   );
 }
