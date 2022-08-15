@@ -1,10 +1,13 @@
 import './App.css';
-import ToDos from './components/ToDo';
+import Coin from './components/Coin';
+import ToDo from './components/ToDo';
 
 function App() {
   return (
     <div>
-      <ToDos />
+      <ToDo />
+      <hr />
+      <Coin />
     </div>
   );
 }
