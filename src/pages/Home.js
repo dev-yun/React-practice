@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Movie from '../components/Movie';
+import MovieList from '../components/MovieList';
 
 function Home() {
   const [loading, setLodings] = useState(true);
@@ -28,7 +28,7 @@ function Home() {
         ) : (
           <div className='mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
             {movies.map((movie) => (
-              <Movie {...movie} key={movie.id} className='group relative' />
+              <MovieList {...movie} key={movie.id} className='group relative' />
             ))}
           </div>
         )}

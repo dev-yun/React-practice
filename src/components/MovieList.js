@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import styles from './Movie.module.css';
+import styles from './MovieList.module.css';
 
-function Movie({ id, medium_cover_image, title, summary, genres }) {
+function MovieList({ id, medium_cover_image, title, summary, genres }) {
   return (
     <>
       <div className='w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none'>
@@ -35,7 +35,7 @@ function Movie({ id, medium_cover_image, title, summary, genres }) {
   );
 }
 
-Movie.propTypes = {
+MovieList.propTypes = {
   id: PropTypes.number.isRequired,
   medium_cover_image: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
@@ -43,4 +43,4 @@ Movie.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default Movie;
+export default MovieList;
