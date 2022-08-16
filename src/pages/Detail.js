@@ -31,10 +31,7 @@ function Detail() {
             {movie.title} (<span>{movie.rating}</span>)
           </h1>
           <p>{movie.description_full}</p>
-          <img
-            src='https://yts.mx/assets/images/movies/rocketry_the_nambi_effect_2022/medium-cover.jpg'
-            alt={movie.title}
-          />
+          <img src={movie.medium_cover_image} alt={movie.title} />
         </div>
       )}
     </div>
