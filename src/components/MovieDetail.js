@@ -1,5 +1,3 @@
-import styles from './Movie.module.css';
-
 function MovieDetail({ title, rating, description_full, medium_cover_image }) {
   return (
     <div className='w-3/5 flex flex-col justify-center items-center my-7 bg-slate-100 rounded-2xl'>
@@ -11,7 +9,7 @@ function MovieDetail({ title, rating, description_full, medium_cover_image }) {
           <img src={medium_cover_image} alt={title} />
         </div>
         <div className='w-2/5 my-7 mx-4'>
-          <p className={`${styles.mulit_line_ellipsis}`}>{description_full}</p>
+          <p>{description_full}</p>
         </div>
       </div>
     </div>
