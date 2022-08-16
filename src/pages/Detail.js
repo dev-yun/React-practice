@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import MovieDetail from '../components/MovieDetail';
 
 function Detail() {
   const { id } = useParams();
@@ -22,16 +23,12 @@ function Detail() {
   console.log(movie);
 
   return (
-    <div>
+    <div className='max-w-2xl mx-auto py-4 px-2 sm:py-4 sm:px-4 lg:max-w-7xl lg:px-8'>
       {loadings ? (
         <h1>Loadings...</h1>
       ) : (
-        <div>
-          <h1>
-            {movie.title} (<span>{movie.rating}</span>)
-          </h1>
-          <p>{movie.description_full}</p>
-          <img src={movie.medium_cover_image} alt={movie.title} />
+        <div className='flex justify-center'>
+          <MovieDetail {...movie} />
         </div>
       )}
     </div>
