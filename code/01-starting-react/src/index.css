@@ -10,5 +10,13 @@ html {
 
 body {
   margin: 0;
-  background-color: #3f3f3f;
+  background-color: #e5deff;
+}
+
+p {
+  display: block;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
