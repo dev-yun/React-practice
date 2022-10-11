@@ -1,4 +1,5 @@
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 /* props
 JS에서 같은 함수에 다른 인자로 호출하는 것처럼, React에서는 같은 컴포넌트에 다른 props를 줘서 컴포넌트를 다룰 수 있다.
@@ -32,7 +33,7 @@ function App() {
 
   return (
     <main>
-      <h1>Let's get started!!</h1>
+      <NewExpense></NewExpense>
       <Expenses items={expenses}></Expenses>
     </main>
   );
