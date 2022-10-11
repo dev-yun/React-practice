@@ -1,6 +1,7 @@
 import "./ExpenseItem.css";
 import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
+import { useState } from "react";
 
 // JSX문법 규칙
 /*
@@ -12,13 +13,23 @@ import Card from "../UI/Card";
 */
 
 function ExpenseItem({ title, amount, date }) {
+  const [baseTitle, setBaseTitle] = useState(title);
+
+  const changeTitle = () => {
+    setBaseTitle("Update!!");
+    console.log(baseTitle);
+  };
+
+  console.log(baseTitle);
+
   return (
     <Card className="expense-item">
       <ExpenseDate date={date} />
       <div className="expense-item__description">
-        <h2>{title}</h2>
+        <h2>{baseTitle}</h2>
         <p className="expense-item__price">${amount}</p>
       </div>
+      <button onClick={changeTitle}>Change Title</button>
     </Card>
   );
 }
