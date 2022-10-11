@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   // 기본적으로 입력에 대한 변경 이벤트(event.target.value)는 숫자, date 모두 문자열로 받아오기 때문에 ''로 초기화
 
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -67,7 +67,7 @@ const ExpenseForm = () => {
       date: new Date(enteredDate),
     };
 
-    console.log(expenseData);
+    props.onSaveExpenseData(expenseData);
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
