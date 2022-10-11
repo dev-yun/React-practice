@@ -34,8 +34,8 @@ const ExpenseForm = () => {
     */
 
     /*
-    하지만 위의 코드도 문제가 발생한다. (3개의 함수에서 setUserInput을 업데이트하는데, 이렇게 객체를 통해 한번에 값을 관리할 경우 이전의 상태가 최신 상태가 아닐 수 있다.)
-    함수를 통해 객체가 최신의 상태임을 명시하여 사용해야한다.
+    하지만 위의 코드도 문제가 발생한다. (상태를 각각 관리하는 것이 아니라 객체로 묶어 관리하고 spread로 펼쳐서 사용하는데, 과거 상태를 사용하는 과정에서 과거의 상태가 최신이 아닐 수 있다.)
+    함수를 통해 객체가 최신의 상태임을 확실히하고 진행해야한다.
     setUserInput((prevState) => {
       return { ...prevState, enteredTitle: event.target.value };
     });
@@ -58,8 +58,20 @@ const ExpenseForm = () => {
     // });
   };
 
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+    };
+
+    console.log(expenseData);
+  };
+
   return (
-    <form action="">
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
