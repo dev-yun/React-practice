@@ -13,23 +13,13 @@ import { useState } from "react";
 */
 
 function ExpenseItem({ title, amount, date }) {
-  const [baseTitle, setBaseTitle] = useState(title);
-
-  const changeTitle = () => {
-    setBaseTitle("Update!!");
-    console.log(baseTitle);
-  };
-
-  console.log(baseTitle);
-
   return (
     <Card className="expense-item">
       <ExpenseDate date={date} />
       <div className="expense-item__description">
-        <h2>{baseTitle}</h2>
+        <h2>{title}</h2>
         <p className="expense-item__price">${amount}</p>
       </div>
-      <button onClick={changeTitle}>Change Title</button>
     </Card>
   );
 }
