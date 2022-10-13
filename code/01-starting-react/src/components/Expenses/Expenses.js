@@ -12,18 +12,20 @@ function Expenses({ items }) {
   };
 
   return (
-    <Card className="expenses">
+    <Card as="section" className="expenses">
       <ExpensesFilter
         selected={filteredYear}
         onChangeYear={filterChangeHandler}
       ></ExpensesFilter>
-      {items.map((item) => (
-        <ExpenseItem
-          title={item.title}
-          amount={item.amount}
-          date={item.date}
-        ></ExpenseItem>
-      ))}
+      <Card as="ul" className="expenses">
+        {items.map((item) => (
+          <ExpenseItem
+            title={item.title}
+            amount={item.amount}
+            date={item.date}
+          ></ExpenseItem>
+        ))}
+      </Card>
     </Card>
   );
 }

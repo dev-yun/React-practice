@@ -12,9 +12,11 @@ import { useState } from "react";
 5. 만약 더 자식 컴포넌트가 없다면(최하위 컴포넌트라면) self-closing 구문으로 작성해도 된다. (<component />)
 */
 
+// 상태가 없는 무상태 컴포넌트이다.(dumb 컴포넌트)
+
 function ExpenseItem({ title, amount, date }) {
   return (
-    <Card className="expense-item">
+    <Card as="li" className="expense-item">
       <ExpenseDate date={date} />
       <div className="expense-item__description">
         <h2>{title}</h2>

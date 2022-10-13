@@ -20,8 +20,10 @@ children => 범용적인 component로 자식 component를 감쌀때, 자식에 �
 */
 
 function Card(props) {
+  const Tag = props.as || "div";
   const classes = "card " + props.className;
-  return <div className={classes}>{props.children}</div>;
+
+  return <Tag className={classes}>{props.children}</Tag>;
 }
 
 export default Card;
