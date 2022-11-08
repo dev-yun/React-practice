@@ -1,8 +1,9 @@
 import { useState } from 'react';
+
 import Card from '../UI/Card';
-import ExpenseItem from './ExpenseItem';
-import './Expenses.css';
 import ExpensesFilter from './ExpensesFilter';
+import ExpensesList from './ExpensesList';
+import './Expenses.css';
 
 function Expenses({ items }) {
   const [filteredYear, setFilteredYear] = useState('2022');
@@ -23,29 +24,13 @@ function Expenses({ items }) {
     return item.date.getFullYear().toString() === filteredYear;
   });
 
-  // JSX에서 논리식을 구현하는 것보다 외부에서 구현하고 JSX를 깔끔하게 하는 것을 선호
-  let expensesContent = <p>Can not found Expenses !</p>;
-
-  if (filteredExpenses.length > 0) {
-    expensesContent = filteredExpenses.map((item) => (
-      <ExpenseItem
-        key={item.id}
-        title={item.title}
-        amount={item.amount}
-        date={item.date}
-      ></ExpenseItem>
-    ));
-  }
-
   return (
     <Card as="section" className="expenses">
       <ExpensesFilter
         selected={filteredYear}
         onChangeYear={filterChangeHandler}
       ></ExpensesFilter>
-      <Card as="ul" className="expenses-list">
-        {expensesContent}
-      </Card>
+      <ExpensesList items={filteredExpenses} />
     </Card>
   );
 }
