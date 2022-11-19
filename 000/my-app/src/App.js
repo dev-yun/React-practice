@@ -1,44 +1,30 @@
-// import { useState } from 'react';
+import React from 'react';
+import styled from 'styled-components';
 
-// const App = () => {
-//   const [isValid, setIsValid] = useState(false);
+const OneButton = styled.button`
+  color: red;
+`;
 
-//   // 클릭하면 isValid를 변경하는 함수
-//   const isValidHandler = () => {
-//     isValid ? setIsValid(false) : setIsValid(true);
-//   };
+const TwoButton = styled(OneButton)`
+  font-size: 30px;
+`;
 
-//   return (
-//     <>
-//       <button onClick={isValidHandler}>Click!</button>
-//       <div
-//         style={{
-//           width: '100px',
-//           height: '100px',
-//           backgroundColor: isValid ? 'tomato' : 'teal',
-//         }}
-//       ></div>
-//     </>
-//   );
-// };
+const Hello = ({ className }) => {
+  return <button className={className}>hello world</button>;
+};
 
-// export default App;
-import { useState } from 'react';
-import styles from './App.module.css';
+const ThreeButton = styled(Hello)`
+  font-size: 30px;
+`;
 
 const App = () => {
-  const [isValid, setIsValid] = useState(true);
-
-  // 클릭하면 isValid를 변경하는 함수
-  const isValidHandler = () => {
-    isValid ? setIsValid(false) : setIsValid(true);
-  };
-
   return (
-    <>
-      <button onClick={isValidHandler}>Click!</button>
-      <div className={`${styles.box} ${!isValid && styles.color}`}></div>
-    </>
+    <div>
+      <OneButton>hello world</OneButton>
+      <TwoButton>hello world</TwoButton>
+      <Hello />
+      <ThreeButton />
+    </div>
   );
 };
 
