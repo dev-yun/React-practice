@@ -1,29 +1,81 @@
 import React from 'react';
-import styled from 'styled-components';
+import { useState } from 'react';
 
-const OneButton = styled.button`
-  color: red;
-`;
+const Form = (props) => {
+  const [inputValue, setInputValue] = useState('');
 
-const TwoButton = styled(OneButton)`
-  font-size: 30px;
-`;
+  const inputChangeHandler = (event) => {
+    setInputValue(event.target.value);
+  };
 
-const Hello = ({ className }) => {
-  return <button className={className}>hello world</button>;
+  const submitHandler = (event) => {
+    event.preventDefault();
+    props.onAdd(inputValue);
+    setInputValue('');
+  };
+
+  return (
+    <form onSubmit={submitHandler}>
+      <input type="text" value={inputValue} onChange={inputChangeHandler} />
+      <button type="submit">Add</button>
+    </form>
+  );
 };
 
-const ThreeButton = styled(Hello)`
-  font-size: 30px;
-`;
+const List = (props) => {
+  return (
+    <ul>
+      {props.items.map((item) => (
+        <Item key={item.id} id={item.id} onDelete={props.onDelete}>
+          {item.content}
+        </Item>
+      ))}
+    </ul>
+  );
+};
+
+const Item = (props) => {
+  const deleteHandler = () => {
+    props.onDelete(props.id);
+  };
+
+  return (
+    <li>
+      {console.log(props)}
+      {props.children}
+      <button onClick={deleteHandler}>삭제</button>
+    </li>
+  );
+};
 
 const App = () => {
+  const [list, setList] = useState([]);
+
+  const addListHandler = (enteredText) => {
+    setList((prevList) => {
+      const updatedList = [...prevList];
+      updatedList.unshift({ content: enteredText, id: Math.random(10) });
+      return updatedList;
+    });
+  };
+
+  const deleteListHandler = (itemId) => {
+    setList((prevList) => {
+      const updatedList = prevList.filter((item) => item.id !== itemId);
+      return updatedList;
+    });
+  };
+
+  let content = <p>아이템이 없습니다. 추가해주세요.</p>;
+
+  if (list.length > 0) {
+    content = <List items={list} onDelete={deleteListHandler} />;
+  }
+
   return (
     <div>
-      <OneButton>hello world</OneButton>
-      <TwoButton>hello world</TwoButton>
-      <Hello />
-      <ThreeButton />
+      <Form onAdd={addListHandler} />
+      <div>{content}</div>
     </div>
   );
 };
