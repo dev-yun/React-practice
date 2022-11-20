@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '../UI/Button';
 import Card from '../UI/Card';
+import Modal from '../UI/Modal';
 
 const UserForm = styled.form`
   display: flex;
@@ -34,6 +35,11 @@ function UserInfoForm(props) {
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
 
+  const [errorTitle, setErrorTitle] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const [isError, setIsError] = useState(false);
+
   const handlerNameChange = (e) => {
     setName(e.target.value);
   };
@@ -46,10 +52,18 @@ function UserInfoForm(props) {
     e.preventDefault();
 
     if (name.trim().length === 0 || age.trim().length === 0) {
+      setErrorTitle('빈 값 입력');
+      setErrorMessage(
+        '이름이나 나이에는 빈 값 또는 공백이 입력될 수 없습니다.'
+      );
+      setIsError(true);
       return;
     }
 
-    if (+age < 1) {
+    if (+age < 0) {
+      setErrorTitle('음수 입력');
+      setErrorMessage('나이에는 음수가 입력될 수 없습니다.');
+      setIsError(true);
       return;
     }
 
@@ -59,26 +73,39 @@ function UserInfoForm(props) {
     setAge('');
   };
 
+  const handlerModalPage = () => {
+    setIsError(false);
+  };
+
   return (
-    <Card>
-      <UserForm onSubmit={handlerSubmitInfo}>
-        <label htmlFor="username">Username</label>
-        <UserInput
-          type="text"
-          id="username"
-          value={name}
-          onChange={handlerNameChange}
+    <>
+      {isError && (
+        <Modal
+          title={errorTitle}
+          message={errorMessage}
+          handlerModalPage={handlerModalPage}
         />
-        <label htmlFor="userAge">Age(Years)</label>
-        <UserInput
-          type="number"
-          id="userAge"
-          value={age}
-          onChange={handlerAgeChange}
-        />
-        <SubmitButton>Add User</SubmitButton>
-      </UserForm>
-    </Card>
+      )}
+      <Card>
+        <UserForm onSubmit={handlerSubmitInfo}>
+          <label htmlFor="username">Username</label>
+          <UserInput
+            type="text"
+            id="username"
+            value={name}
+            onChange={handlerNameChange}
+          />
+          <label htmlFor="userAge">Age(Years)</label>
+          <UserInput
+            type="number"
+            id="userAge"
+            value={age}
+            onChange={handlerAgeChange}
+          />
+          <SubmitButton>Add User</SubmitButton>
+        </UserForm>
+      </Card>
+    </>
   );
 }
 

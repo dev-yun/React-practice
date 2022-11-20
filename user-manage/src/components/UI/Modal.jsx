@@ -1,23 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '../UI/Button';
-import Card from '../UI/Card';
+import { Button } from './Button';
+import Card from './Card';
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
 
-  width: 100vw;
+const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
-
-  background-color: rgba(255, 255, 255, 0.1);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.75);
 `;
 
 const ModalWrapper = styled(Card)`
-  position: relative;
-  overflow: hidden;
+  position: fixed;
+  top: 40vh;
+  z-index: 100;
 
+  overflow: hidden;
   background-color: #7a1db0;
 `;
 
@@ -29,13 +36,16 @@ const ModalHeader = styled.h2`
   padding: 20px;
 `;
 
-const ModalContent = styled.p`
+const ModalBody = styled.div`
   position: relative;
   height: 150px;
   padding: 30px 20px;
 
-  font-size: 24px;
   background-color: white;
+`;
+
+const ModalMessage = styled.p`
+  font-size: 24px;
 `;
 
 const ModalButton = styled(Button)`
@@ -46,15 +56,16 @@ const ModalButton = styled(Button)`
   width: 80px;
 `;
 
-function Modal() {
+function Modal(props) {
   return (
     <Wrapper>
+      <Backdrop />
       <ModalWrapper>
-        <ModalHeader>header</ModalHeader>
-        <ModalContent>
-          Please
-          <ModalButton>Okay</ModalButton>
-        </ModalContent>
+        <ModalHeader>{props.title}</ModalHeader>
+        <ModalBody>
+          <ModalMessage>{props.message}</ModalMessage>
+          <ModalButton onClick={props.handlerModalPage}>Okay</ModalButton>
+        </ModalBody>
       </ModalWrapper>
     </Wrapper>
   );

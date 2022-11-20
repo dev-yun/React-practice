@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import UserInfoForm from './components/UserInfo/UserInfoForm';
 import UserList from './components/UserList/UserList';
 import shortid from 'shortid';
-import Modal from './components/Modal/Modal';
 import Card from './components/UI/Card';
 
 const Main = styled.section`
@@ -53,7 +52,6 @@ function App() {
           <p>유저 정보가 없습니다..!</p>
         </Card>
       )}
-      <Modal></Modal>
     </Main>
   );
 }
