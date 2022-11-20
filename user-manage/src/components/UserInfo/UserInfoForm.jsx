@@ -2,18 +2,14 @@ import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '../UI/Button';
+import Card from '../UI/Card';
 
 const UserForm = styled.form`
   display: flex;
   justify-content: center;
   flex-direction: column;
 
-  width: 600px;
-  padding: 20px;
   gap: 10px;
-  background-color: white;
-
-  border-radius: 20px;
 
   & label {
     font-weight: bold;
@@ -55,23 +51,25 @@ function UserInfoForm(props) {
   };
 
   return (
-    <UserForm onSubmit={handlerSubmitInfo}>
-      <label htmlFor="username">Username</label>
-      <UserInput
-        type="text"
-        id="username"
-        value={name}
-        onChange={handlerNameChange}
-      />
-      <label htmlFor="userAge">Age(Years)</label>
-      <UserInput
-        type="number"
-        id="userAge"
-        value={age}
-        onChange={handlerAgeChange}
-      />
-      <SubmitButton>Add User</SubmitButton>
-    </UserForm>
+    <Card>
+      <UserForm onSubmit={handlerSubmitInfo}>
+        <label htmlFor="username">Username</label>
+        <UserInput
+          type="text"
+          id="username"
+          value={name}
+          onChange={handlerNameChange}
+        />
+        <label htmlFor="userAge">Age(Years)</label>
+        <UserInput
+          type="number"
+          id="userAge"
+          value={age}
+          onChange={handlerAgeChange}
+        />
+        <SubmitButton>Add User</SubmitButton>
+      </UserForm>
+    </Card>
   );
 }
 

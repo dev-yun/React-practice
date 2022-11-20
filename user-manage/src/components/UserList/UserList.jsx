@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Card from '../UI/Card';
 import UserItem from './UserItem';
 
 const UserListStyle = styled.ul`
@@ -7,28 +8,24 @@ const UserListStyle = styled.ul`
   justify-content: center;
   flex-direction: column;
   gap: 10px;
-
-  width: 600px;
-  padding: 20px;
-
-  border-radius: 15px;
-  background-color: white;
 `;
 
 function UserList(props) {
   return (
-    <UserListStyle>
-      {console.log(props)}
-      {props.userInfo.map((item) => (
-        <UserItem
-          username={item.username}
-          age={item.age}
-          key={item.id}
-          id={item.id}
-          deleteUserInfo={props.deleteUserInfo}
-        ></UserItem>
-      ))}
-    </UserListStyle>
+    <Card>
+      <UserListStyle>
+        {console.log(props)}
+        {props.userInfo.map((item) => (
+          <UserItem
+            username={item.username}
+            age={item.age}
+            key={item.id}
+            id={item.id}
+            deleteUserInfo={props.deleteUserInfo}
+          ></UserItem>
+        ))}
+      </UserListStyle>
+    </Card>
   );
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../UI/Button';
+import Card from '../UI/Card';
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,14 +14,11 @@ const Wrapper = styled.div`
   background-color: rgba(255, 255, 255, 0.1);
 `;
 
-const ModalWrapper = styled.div`
+const ModalWrapper = styled(Card)`
   position: relative;
-  width: 640px;
+  overflow: hidden;
 
   background-color: #7a1db0;
-
-  overflow: hidden;
-  border-radius: 20px;
 `;
 
 const ModalHeader = styled.h2`

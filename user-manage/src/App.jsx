@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import UserInfoForm from './components/UserInfo/UserInfoForm';
 import UserList from './components/UserList/UserList';
 import shortid from 'shortid';
+import Modal from './components/Modal/Modal';
 
 const Main = styled.section`
   display: flex;
@@ -56,6 +57,7 @@ function App() {
       ) : (
         <p>유저 정보가 없습니다..!</p>
       )}
+      <Modal></Modal>
     </Main>
   );
 }
