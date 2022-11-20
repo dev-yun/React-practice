@@ -44,6 +44,15 @@ function UserInfoForm(props) {
 
   const handlerSubmitInfo = (e) => {
     e.preventDefault();
+
+    if (name.trim().length === 0 || age.trim().length === 0) {
+      return;
+    }
+
+    if (+age < 1) {
+      return;
+    }
+
     props.addUserInfo({ username: name, age: age });
 
     setName('');

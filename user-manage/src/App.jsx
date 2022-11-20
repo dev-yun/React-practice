@@ -5,6 +5,7 @@ import UserInfoForm from './components/UserInfo/UserInfoForm';
 import UserList from './components/UserList/UserList';
 import shortid from 'shortid';
 import Modal from './components/Modal/Modal';
+import Card from './components/UI/Card';
 
 const Main = styled.section`
   display: flex;
@@ -26,23 +27,16 @@ function App() {
   // form에서 추가해서 list를 만들예정
   const addUserInfo = (user) => {
     setUserInfo((prevList) => {
-      const updateList = [...prevList];
-
-      updateList.unshift({
-        username: user.username,
-        age: user.age,
-        id: shortid.generate(),
-      });
-
-      return updateList;
+      return [
+        ...prevList,
+        { username: user.username, age: user.age, id: shortid.generate() },
+      ];
     });
   };
 
   const deleteUserInfo = (infoId) => {
     setUserInfo((prevList) => {
-      const updateList = [...prevList];
-
-      return updateList.filter((item) => item.id !== infoId);
+      return prevList.filter((item) => item.id !== infoId);
     });
   };
 
@@ -55,7 +49,9 @@ function App() {
           deleteUserInfo={deleteUserInfo}
         ></UserList>
       ) : (
-        <p>유저 정보가 없습니다..!</p>
+        <Card>
+          <p>유저 정보가 없습니다..!</p>
+        </Card>
       )}
       <Modal></Modal>
     </Main>
