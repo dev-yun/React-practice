@@ -1,13 +1,8 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import { Button } from './Button';
 import Card from './Card';
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 const Backdrop = styled.div`
   position: fixed;
@@ -21,7 +16,9 @@ const Backdrop = styled.div`
 
 const ModalWrapper = styled(Card)`
   position: fixed;
-  top: 40vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50vh;
   z-index: 100;
 
   overflow: hidden;
@@ -56,10 +53,10 @@ const ModalButton = styled(Button)`
   width: 80px;
 `;
 
-function Modal(props) {
+function ModalLayout(props) {
   return (
-    <Wrapper>
-      <Backdrop />
+    <>
+      <Backdrop onClick={props.handlerModalPage} />
       <ModalWrapper>
         <ModalHeader>{props.title}</ModalHeader>
         <ModalBody>
@@ -67,7 +64,23 @@ function Modal(props) {
           <ModalButton onClick={props.handlerModalPage}>Okay</ModalButton>
         </ModalBody>
       </ModalWrapper>
-    </Wrapper>
+    </>
+  );
+}
+
+// ModalLayout을 Backdrop과 ModalLayout 두개로 나누고 createPortal을 두번 추가할수도 있다.
+function Modal(props) {
+  return (
+    <>
+      {createPortal(
+        <ModalLayout
+          title={props.title}
+          message={props.message}
+          handlerModalPage={props.handlerModalPage}
+        />,
+        document.querySelector('#modal')
+      )}
+    </>
   );
 }
 
