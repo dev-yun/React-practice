@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useEffect, useState } from 'react';
+import { useQuery, useQueryClient } from 'react-query';
 
 import { PostDetail } from './PostDetail';
 const MAX_POST_PAGE = 10;
@@ -15,12 +15,24 @@ export function Posts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedPost, setSelectedPost] = useState(null);
 
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (currentPage < MAX_POST_PAGE) {
+      const nextPage = currentPage + 1;
+      queryClient.prefetchQuery(['posts', nextPage], () =>
+        fetchPosts(nextPage)
+      );
+    }
+  }, [currentPage, queryClient]);
+
   // replace with useQuery
   const { data, isLoading, isError } = useQuery(
     ['posts', currentPage],
     () => fetchPosts(currentPage),
     {
       staleTime: 2000,
+      // keepPreviousData: true,
     }
   );
 
